@@ -1,5 +1,4 @@
-FROM microsoft/iis
+FROM microsoft/aspnet
+ADD enablessl.ps1 /windows/temp/enablessl.ps1
 
-RUN powershell -Command Add-WindowsFeature NET-Framework-45-ASPNET; \
-    powershell -Command Add-WindowsFeature Web-Asp-Net45; \
-    powershell -Command Remove-Item -Recurse C:\inetpub\wwwroot\*
+RUN powershell.exe -executionpolicy bypass c:\windows\temp\enablessl.ps1
